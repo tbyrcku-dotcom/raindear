@@ -1,0 +1,65 @@
+services:
+  app:
+    image: serversideup/php:8.3-fpm-nginx
+    container_name: raindear_app
+    environment:
+      AUTORUN_ENABLED: "true"
+      AUTORUN_LARAVEL_MIGRATION: "true"
+      AUTORUN_LARAVEL_SEEDER: "false"
+      PHP_OPCACHE_ENABLE: "1"
+      WEBUSER_PUID: 1000
+      WEBUSER_PGID: 1000
+    volumes:
+      - ./:/var/www/html
+    ports:
+      - "8000:8080"
+    depends_on:
+      mysql:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    networks: [raindear]
+
+  mysql:
+    image: mysql:8.4
+    container_name: raindear_mysql
+    environment:
+      MYSQL_DATABASE: raindear
+      MYSQL_USER: raindear
+      MYSQL_PASSWORD: raindear
+      MYSQL_ROOT_PASSWORD: rootpw
+    volumes:
+      - mysql_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-u", "root", "-prootpw"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    networks: [raindear]
+
+  redis:
+    image: redis:7-alpine
+    container_name: raindear_redis
+    ports:
+      - "6379:6379"
+    networks: [raindear]
+
+  vite:
+    image: node:22-alpine
+    container_name: raindear_vite
+    working_dir: /app
+    volumes:
+      - ./:/app
+    command: sh -c "npm install --silent && npm run dev -- --host 0.0.0.0"
+    ports:
+      - "5173:5173"
+    networks: [raindear]
+
+volumes:
+  mysql_data:
+
+networks:
+  raindear:
+    driver: bridge

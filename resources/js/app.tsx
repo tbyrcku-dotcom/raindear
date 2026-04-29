@@ -1,29 +1,27 @@
 import '../css/app.css';
 
-import { createInertiaApp } from '@inertiajs/react';
-import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { createRoot } from 'react-dom/client';
-import { route as routeFn } from 'ziggy-js';
-import { initializeTheme } from './hooks/use-appearance';
+import { BrowserRouter } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
-declare global {
-    const route: typeof routeFn;
-}
+import AppRouter from './app/router';
 
-const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
-
-createInertiaApp({
-    title: (title) => `${title} - ${appName}`,
-    resolve: (name) => resolvePageComponent(`./pages/${name}.tsx`, import.meta.glob('./pages/**/*.tsx')),
-    setup({ el, App, props }) {
-        const root = createRoot(el);
-
-        root.render(<App {...props} />);
-    },
-    progress: {
-        color: '#4B5563',
+const queryClient = new QueryClient({
+    defaultOptions: {
+        queries: {
+            staleTime: 1000 * 60 * 2,
+            refetchOnWindowFocus: false,
+            retry: 1,
+        },
     },
 });
 
-// This will set light / dark mode on load...
-initializeTheme();
+const container = document.getElementById('app');
+if (!container) throw new Error('#app root not found');
+createRoot(container).render(
+    <QueryClientProvider client={queryClient}>
+        <BrowserRouter>
+            <AppRouter />
+        </BrowserRouter>
+    </QueryClientProvider>,
+);
