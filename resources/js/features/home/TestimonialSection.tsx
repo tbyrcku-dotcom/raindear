@@ -1,46 +1,54 @@
 import { useQuery } from '@tanstack/react-query';
-import { Quote } from 'lucide-react';
 
-import { AnimatedReveal } from '@/components/common/AnimatedReveal';
+import { TestimonialMarquee } from '@/components/common/TestimonialMarquee';
 import { api } from '@/lib/api';
 import { qk } from '@/lib/queryKeys';
 import type { ApiCollection, Testimonial } from '@/types';
 
 export function TestimonialSection() {
-    const { data } = useQuery({
+    const { data, isLoading } = useQuery({
         queryKey: qk.testimonials(true),
         queryFn: async () => {
-            const r = await api.get<ApiCollection<Testimonial>>('/testimonials', { params: { featured: true } });
+            const r = await api.get<ApiCollection<Testimonial>>('/testimonials', {
+                params: { featured: true },
+            });
             return r.data.data;
         },
     });
 
-    const items = (data ?? []).slice(0, 3);
+    const items = data ?? [];
 
     return (
-        <section className="relative py-32 md:py-40 border-t border-line/60">
-            <div className="container-editorial">
-                <div className="mb-16 font-mono text-[10px] uppercase tracking-[0.4em] text-gold">
-                    Worth staying for · words from the room
+        <section className="relative border-t border-line/60 py-28 md:py-36">
+            <div className="container-editorial mb-14 flex flex-wrap items-end justify-between gap-4">
+                <div>
+                    <div className="font-mono text-[10px] uppercase tracking-[0.4em] text-gold">
+                        Worth staying for · words from the room
+                    </div>
+                    <h2 className="mt-5 max-w-2xl font-display text-4xl leading-[0.95] text-cream md:text-5xl">
+                        Real reviews,<br />
+                        <em className="italic text-gold">real warmth.</em>
+                    </h2>
                 </div>
+                <a
+                    href="https://www.tripadvisor.co.id/Restaurant_Review-g297706-d23741380-Reviews-Raindear_Coffee_And_Kitchen_Bogor-Bogor_West_Java_Java.html"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-mono text-[10px] uppercase tracking-[0.4em] text-cream-dim hover:text-cream"
+                >
+                    See all on TripAdvisor →
+                </a>
+            </div>
 
-                <div className="grid gap-12 md:grid-cols-3 md:gap-10">
-                    {items.map((t, i) => (
-                        <AnimatedReveal key={t.id} delay={i * 0.08}>
-                            <figure className="relative">
-                                <Quote className="text-gold/40" size={28} strokeWidth={1} />
-                                <blockquote className="mt-5 font-display text-2xl leading-snug text-cream md:text-3xl">
-                                    “{t.content}”
-                                </blockquote>
-                                <figcaption className="mt-6 font-mono text-[10px] uppercase tracking-[0.4em] text-cream-dim">
-                                    {t.customer_name}
-                                    {t.source && <span className="text-gold"> · {t.source}</span>}
-                                </figcaption>
-                            </figure>
-                        </AnimatedReveal>
+            {isLoading ? (
+                <div className="container-editorial grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                    {Array.from({ length: 3 }).map((_, i) => (
+                        <div key={i} className="h-52 w-full skeleton" />
                     ))}
                 </div>
-            </div>
+            ) : (
+                <TestimonialMarquee testimonials={items} />
+            )}
         </section>
     );
 }

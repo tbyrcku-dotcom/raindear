@@ -39,13 +39,23 @@ export function HeroSection() {
         >
             {/* spotlight background */}
             <div className="absolute inset-0 -z-10 bg-ink">
+                {/* real-photo backdrop, heavily darkened so headline copy stays legible */}
+                <motion.img
+                    src="/images/interior/interior-dark-deer-wall.jpg"
+                    alt=""
+                    aria-hidden
+                    style={reduce ? undefined : { y: visualY, scale: visualScale }}
+                    className="absolute inset-0 h-full w-full object-cover opacity-[0.42]"
+                    loading="eager"
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-ink/80 via-ink/65 to-ink" />
                 <motion.div
                     aria-hidden
                     className="absolute inset-0 mix-blend-screen"
                     animate={
                         reduce
                             ? undefined
-                            : { background: `radial-gradient(800px 800px at ${mouse.x * 100}% ${mouse.y * 100}%, rgba(201, 162, 91, 0.18), transparent 60%)` }
+                            : { background: `radial-gradient(800px 800px at ${mouse.x * 100}% ${mouse.y * 100}%, rgba(201, 162, 91, 0.22), transparent 60%)` }
                     }
                     transition={{ type: 'tween', duration: 0.6, ease: 'linear' }}
                 />

@@ -30,7 +30,8 @@ class MenuSeeder extends Seeder
         $items = [
             // Coffee
             ['cat' => 'coffee', 'name' => 'Es Kopi Bogor Original', 'price' => 28000, 'tags' => ['signature', 'popular'],
-                'desc' => 'Our signature ice coffee — bold espresso, warm palm sugar, fresh milk.'],
+                'desc' => 'Our signature ice coffee — bold espresso, warm palm sugar, fresh milk.',
+                'image' => '/images/menu/es-kopi-bogor.jpg'],
             ['cat' => 'coffee', 'name' => 'Cappuccino', 'price' => 32000, 'tags' => ['popular'],
                 'desc' => 'Espresso, steamed milk, dense velvet foam.'],
             ['cat' => 'coffee', 'name' => 'Volcachino', 'price' => 38000, 'tags' => ['signature'],
@@ -66,7 +67,8 @@ class MenuSeeder extends Seeder
             ['cat' => 'pasta', 'name' => 'Aglio Olio Tuna', 'price' => 65000, 'tags' => [],
                 'desc' => 'Garlic-chili spaghetti, seared tuna, parsley.'],
             ['cat' => 'pasta', 'name' => 'Truffle Mushroom Beef Ravioli', 'price' => 95000, 'tags' => ['signature'],
-                'desc' => 'Hand-folded ravioli, truffle cream, slow-braised beef.'],
+                'desc' => 'Hand-folded ravioli, truffle cream, slow-braised beef.',
+                'image' => '/images/menu/mushroom-pasta.jpg'],
 
             // Rice
             ['cat' => 'rice', 'name' => 'Nasi Goreng Kampung', 'price' => 55000, 'tags' => ['popular'],
@@ -91,6 +93,7 @@ class MenuSeeder extends Seeder
                     'name' => $row['name'],
                     'description' => $row['desc'],
                     'price' => $row['price'],
+                    'image_path' => $row['image'] ?? null,
                     'is_signature' => in_array('signature', $row['tags'], true),
                     'is_popular' => in_array('popular', $row['tags'], true),
                     'is_new' => in_array('new', $row['tags'], true),

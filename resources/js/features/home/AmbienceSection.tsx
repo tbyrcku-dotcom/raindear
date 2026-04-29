@@ -22,16 +22,16 @@ export function AmbienceSection() {
                 <div className="grid gap-6 md:col-span-7 md:grid-cols-2">
                     <AnimatedReveal delay={0.05}>
                         <ImageWithFallback
-                            src="/img/gallery/interior-1.jpg"
-                            alt="Indoor lounge with timber tables"
+                            src="/images/interior/interior-dark-deer-wall.jpg"
+                            alt="Dark wood coffered ceiling, leather banquette, and gold deer mark on the wall"
                             className="aspect-[4/5] w-full"
                             fallbackTone="gold"
                         />
                     </AnimatedReveal>
                     <AnimatedReveal delay={0.15} className="md:mt-16">
                         <ImageWithFallback
-                            src="/img/gallery/ambience-1.jpg"
-                            alt="Outdoor patio with hanging lights"
+                            src="/images/interior/interior-arches.jpg"
+                            alt="Arched windows, white coffered ceiling, and tan leather banquettes"
                             className="aspect-[4/5] w-full"
                             fallbackTone="copper"
                         />

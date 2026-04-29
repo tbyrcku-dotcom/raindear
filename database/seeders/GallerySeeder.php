@@ -7,19 +7,40 @@ use Illuminate\Database\Seeder;
 
 class GallerySeeder extends Seeder
 {
+    /**
+     * Real imagery sourced from the brand's public press coverage and social presence
+     * (marketeers, tribunnews, jawapos, tripadvisor). Files are committed under
+     * public/images/ and served directly by the web server — replace with official
+     * high-res Raindear photography before production deploy.
+     */
     public function run(): void
     {
-        // Placeholder remote photo references. Replace with licensed/official Raindear assets.
         $assets = [
-            ['title' => 'Indoor lounge', 'category' => 'interior', 'image_path' => '/img/gallery/interior-1.jpg', 'alt_text' => 'Warm-lit indoor lounge with timber tables and pendant lights', 'is_featured' => true, 'sort_order' => 1],
-            ['title' => 'Bar counter', 'category' => 'interior', 'image_path' => '/img/gallery/interior-2.jpg', 'alt_text' => 'Espresso bar counter with a barista at work', 'sort_order' => 2],
-            ['title' => 'Outdoor patio', 'category' => 'ambience', 'image_path' => '/img/gallery/ambience-1.jpg', 'alt_text' => 'Garden patio with hanging lights and lush greenery', 'is_featured' => true, 'sort_order' => 3],
-            ['title' => 'Cumi Hitam plate', 'category' => 'food', 'image_path' => '/img/gallery/food-1.jpg', 'alt_text' => 'Black squid-ink fried rice plated with garnish', 'is_featured' => true, 'sort_order' => 4],
-            ['title' => 'Wagyu', 'category' => 'food', 'image_path' => '/img/gallery/food-2.jpg', 'alt_text' => 'Sliced wagyu steak with truffle and roasted potatoes', 'sort_order' => 5],
-            ['title' => 'Volcachino', 'category' => 'beverage', 'image_path' => '/img/gallery/beverage-1.jpg', 'alt_text' => 'Volcachino layered chocolate coffee in a glass', 'is_featured' => true, 'sort_order' => 6],
-            ['title' => 'Cappuccino latte art', 'category' => 'beverage', 'image_path' => '/img/gallery/beverage-2.jpg', 'alt_text' => 'Cappuccino with rosetta latte art on a saucer', 'sort_order' => 7],
-            ['title' => 'Birthday celebration', 'category' => 'event', 'image_path' => '/img/gallery/event-1.jpg', 'alt_text' => 'Birthday celebration table set with candles and dessert', 'sort_order' => 8],
-            ['title' => 'Live music night', 'category' => 'event', 'image_path' => '/img/gallery/event-2.jpg', 'alt_text' => 'Live acoustic performance on a small wooden stage', 'sort_order' => 9],
+            // Interior — the restaurant's distinctive rooms
+            ['title' => 'Dark dining room', 'category' => 'interior', 'image_path' => '/images/interior/interior-dark-deer-wall.jpg',
+                'alt_text' => 'Dark wood coffered ceiling, leather banquette, and gold deer mark on the wall', 'is_featured' => true, 'sort_order' => 1],
+            ['title' => 'Arched atrium', 'category' => 'interior', 'image_path' => '/images/interior/interior-arches.jpg',
+                'alt_text' => 'Arched windows, white coffered ceiling, and tan leather banquettes', 'is_featured' => true, 'sort_order' => 2],
+            ['title' => 'Blue booth corner', 'category' => 'interior', 'image_path' => '/images/interior/interior-blue-booth.jpg',
+                'alt_text' => 'Blue tufted booth beside an arched window with hand-painted blue tile', 'sort_order' => 3],
+            ['title' => 'Coffee belt mural', 'category' => 'interior', 'image_path' => '/images/interior/interior-coffee-belt.jpg',
+                'alt_text' => 'Raindear deer mural with Coffee Belt map behind the espresso bar', 'is_featured' => true, 'sort_order' => 4],
+            ['title' => 'Loft seating', 'category' => 'ambience', 'image_path' => '/images/interior/interior-casual-loft.jpg',
+                'alt_text' => 'Two-story loft with industrial ceiling and casual seating', 'sort_order' => 5],
+            ['title' => 'Atrium staircase', 'category' => 'ambience', 'image_path' => '/images/interior/interior-atrium.webp',
+                'alt_text' => 'Spiral staircase wrapping a central live tree in a double-height atrium', 'is_featured' => true, 'sort_order' => 6],
+
+            // Food & beverage — signature dishes
+            ['title' => 'Es Kopi Bogor Original', 'category' => 'beverage', 'image_path' => '/images/menu/es-kopi-bogor.jpg',
+                'alt_text' => 'Signature Es Kopi Bogor Original served in the Raindear-branded can', 'is_featured' => true, 'sort_order' => 7],
+            ['title' => 'Truffle mushroom pasta', 'category' => 'food', 'image_path' => '/images/menu/mushroom-pasta.jpg',
+                'alt_text' => 'Creamy mushroom pasta with toasted garlic bread and a copper Raindear mug', 'is_featured' => true, 'sort_order' => 8],
+
+            // Brand & exterior
+            ['title' => 'Raindear façade', 'category' => 'exterior', 'image_path' => '/images/brand/exterior-facade.webp',
+                'alt_text' => 'Raindear Coffee & Kitchen exterior: white modern façade with arched windows and the deer logo', 'is_featured' => true, 'sort_order' => 9],
+            ['title' => 'Menu highlights', 'category' => 'food', 'image_path' => '/images/gallery/collage-pizza-cake-exterior.png',
+                'alt_text' => 'Collage of Raindear pizza, dessert plate, exterior signage, and a plant-lined table', 'sort_order' => 10],
         ];
 
         foreach ($assets as $a) {
