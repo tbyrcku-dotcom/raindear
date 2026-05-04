@@ -15,6 +15,7 @@ class MenuItemResource extends JsonResource
             'name' => $this->name,
             'slug' => $this->slug,
             'description' => $this->description,
+            'details' => $this->details,
             'price' => (float) $this->price,
             'image_path' => $this->image_path,
             'image_url' => $this->image_url,

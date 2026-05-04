@@ -14,12 +14,13 @@ class MenuItem extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'menu_category_id', 'name', 'slug', 'description', 'price', 'image_path',
+        'menu_category_id', 'name', 'slug', 'description', 'details', 'price', 'image_path',
         'is_signature', 'is_popular', 'is_new', 'is_available', 'sort_order',
     ];
 
     protected $casts = [
         'price' => 'decimal:2',
+        'details' => 'array',
         'is_signature' => 'boolean',
         'is_popular' => 'boolean',
         'is_new' => 'boolean',

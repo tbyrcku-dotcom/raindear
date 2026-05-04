@@ -34,12 +34,27 @@ export type MenuCategory = {
     menu_items?: MenuItem[];
 };
 
+export type MenuItemDetails = {
+    long_description?: string | null;
+    ingredients?: string[] | null;
+    allergens?: string[] | null;
+    diet?: string[] | null;
+    pairings?: string[] | null;
+    prep_time_min?: number | null;
+    calories?: number | null;
+    portion?: string | null;
+    spice_level?: number | null;
+    origin?: string | null;
+    chef_note?: string | null;
+};
+
 export type MenuItem = {
     id: number;
     menu_category_id: number;
     name: string;
     slug: string;
     description: string | null;
+    details: MenuItemDetails | null;
     price: number;
     image_path: string | null;
     image_url: string | null;
