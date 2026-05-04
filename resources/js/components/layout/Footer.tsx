@@ -1,7 +1,7 @@
 import { Instagram, Facebook } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-import { DeerMark } from '@/components/deer/DeerMark';
+import { BrandMark } from '@/components/deer/BrandMark';
 
 const PHONE = '+62 821-1178-9089';
 const WA = '6282111789089';
@@ -14,7 +14,7 @@ export function Footer() {
             <div className="container-editorial grid gap-12 py-20 md:grid-cols-12">
                 <div className="md:col-span-5">
                     <div className="flex items-center gap-4">
-                        <DeerMark size={40} stroke="var(--color-gold)" />
+                        <BrandMark size={48} tone="gold" />
                         <span className="font-display text-3xl text-cream">Raindear</span>
                     </div>
                     <p className="mt-6 max-w-md text-balance text-base leading-relaxed text-cream-dim">

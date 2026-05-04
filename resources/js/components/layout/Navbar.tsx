@@ -3,6 +3,7 @@ import { Menu as MenuIcon, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 
+import { BrandMark } from '@/components/deer/BrandMark';
 import { cn } from '@/lib/utils';
 
 const links = [
@@ -37,12 +38,21 @@ export function Navbar() {
                 style={{ opacity: bgOpacity, backdropFilter: useBackdrop(blurAmount) }}
             />
             <div className="container-editorial flex h-16 items-center justify-between md:h-20">
-                <Link to="/" className="group flex items-center gap-3">
-                    <span className="font-display text-2xl tracking-tight text-cream md:text-[28px]">
-                        Raindear
-                    </span>
-                    <span className="hidden font-mono text-[9px] uppercase tracking-[0.4em] text-gold sm:inline">
-                        Coffee &middot; Kitchen
+                <Link to="/" aria-label="Raindear Coffee & Kitchen" className="group flex items-center gap-3">
+                    <motion.span
+                        whileHover={{ rotate: -4 }}
+                        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                        className="inline-flex"
+                    >
+                        <BrandMark size={36} tone="cream" />
+                    </motion.span>
+                    <span className="flex flex-col leading-none">
+                        <span className="font-display text-2xl tracking-tight text-cream md:text-[26px]">
+                            Raindear
+                        </span>
+                        <span className="hidden font-mono text-[8px] uppercase tracking-[0.4em] text-gold/80 sm:inline">
+                            Coffee &middot; Kitchen
+                        </span>
                     </span>
                 </Link>
 
