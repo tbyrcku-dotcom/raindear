@@ -3,8 +3,6 @@ import { ArrowRight, MapPin } from 'lucide-react';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { DeerMark } from '@/components/deer/DeerMark';
-
 const HERO_HEADLINE = [
     ['Where', 'Bogor'],
     ['meets', 'coffee,'],
@@ -107,17 +105,22 @@ export function HeroSection() {
 
                 {/* coffee steam wash */}
                 <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-ink to-transparent" />
-                {/* hairline grid */}
-                <div className="absolute inset-0 opacity-[0.06] [background-image:linear-gradient(to_right,white_1px,transparent_1px),linear-gradient(to_bottom,white_1px,transparent_1px)] [background-size:88px_88px]" />
             </div>
 
-            {/* decorative deer watermark */}
+            {/* decorative deer watermark — actual brand logo */}
             <motion.div
                 style={reduce ? undefined : { y: visualY, scale: visualScale }}
-                className="pointer-events-none absolute right-[-6%] top-[-2%] z-0 hidden md:block"
+                className="pointer-events-none absolute right-[-4%] top-[6%] z-0 hidden h-[78%] w-[42%] md:block"
                 aria-hidden
             >
-                <DeerMark size={620} stroke="rgba(201,162,91,0.12)" strokeWidth={0.8} />
+                <motion.img
+                    src="/images/brand/raindear-deer-gold.png"
+                    alt=""
+                    className="h-full w-full object-contain opacity-[0.18] mix-blend-screen"
+                    initial={reduce ? false : { opacity: 0, scale: 0.96 }}
+                    animate={{ opacity: 0.18, scale: 1 }}
+                    transition={{ duration: 2, ease: [0.22, 1, 0.36, 1], delay: 0.4 }}
+                />
             </motion.div>
 
             <motion.div
